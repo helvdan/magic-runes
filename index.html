@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" charset="utf-8"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+        <title>Магические руны</title>
+        <style>
+            #game-container{
+                background-color: #ccc;
+                width: 500px;
+                height: 500px;
+                margin: 100px auto;
+            }
+            .rune{
+                width: 100px;
+                height: 100px;
+                float: left;
+            }
+            .fire_rune{
+                background-color: #F00;
+            }
+            .ice_rune{
+                background-color: #00F;
+            }
+            .health_rune{
+                background-color: #0F0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="game-container">
+        </div>
+    </body>
+    <script>
+        function create_rune_element(color){
+            switch(rune){
+                case 'red':
+                    rune_type = 'fire_rune'
+                    break;
+                case 'blue':
+                    rune_type = 'ice_rune'
+                    break;
+                case 'green':
+                    rune_type = 'health_rune'
+                    break;
+            }
+            return "<div class='rune " + rune_type + "'></div>"
+        }
+
+        map = [
+            ['red', 'blue', 'green', 'red', 'green'],
+            ['green', null, 'blue', 'blue', 'red'],
+            ['blue', 'blue', 'red', 'red', 'green'],
+            ['green', 'red', 'blue', 'red', 'blue'],
+            ['red', 'red', 'green', 'red', null]
+        ]
+        for (row_index in map){
+            row = map[row_index]
+            for (rune_index in row){
+                rune = row[rune_index]
+                element_str = create_rune_element(rune)
+                $('#game-container').append(element_str)
+            }
+        }
+    </script>
+</html>
